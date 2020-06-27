@@ -1,0 +1,86 @@
+<html>
+<head>
+   <meta charset="utf-8" />
+   <title> Listado </title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/bootstrap.min.css" />
+   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/bootstrap-responsive.min.css" />
+</head>
+<body>
+   <div class="container">
+	  <h1> Listado de Compras </h1>
+	  
+      <form action="javascript:void(0);" id="controlador_compra">
+		   
+         <div v-if="cargando_compra">
+            Cargando listado...
+		 </div>
+
+         <table class="table" v-if="!cargando_compra">
+            <thead>
+               <tr>
+                  <th> Nombre </th>
+                  <th> Descripción </th>
+                  <th> Precio </th>
+				  <th> Imagen </th>
+				  <th>Categoria</th>
+               </tr>
+            </thead>
+            <tbody>
+            
+               <tr v-for="tar in compras">
+                  <td>
+                     <input type="text" v-model="tar.nombre" />
+                  </td>
+                  <td>
+                     <textarea v-model="tar.descripcion"></textarea>
+                  </td>
+                  <td>
+					<input type="text" v-model="tar.precio" />
+				 </td>
+				 <td>
+					<!--<input type="file" name="imagen" @change="getImage" accept="image/*">-->
+					<img :src="avatar" class="img-circle" width="150" />
+				 </td>
+				 <td>
+					<input type="text" v-model="tar.categoria" />
+				 </td>
+                  <td>
+                     <button class="btn btn-primary" v-on:click="modificarCompra(tar)"> Guardar </button>
+                     <button class="btn btn-danger" v-on:click="eliminarCompra(tar)"> Eliminar </button>
+                  </td>
+               </tr>
+             
+               <tr>
+                  <td>
+                     <input type="text" v-model="compra_nueva.titulo" />
+                  </td>
+                  <td>
+                     <textarea v-model="compra_nueva.descripcion"></textarea>
+				  </td>
+				  <td>
+					<textarea v-model="compra_nueva.precio"></textarea>
+				 </td>
+				 <td>
+					 
+					<input type="file" name="imagen" @change="getImage" accept="image/*">
+				 </td>
+                  <td>
+                     &nbsp;
+                  </td>
+                  <td>
+                     <button class="btn btn-success" v-on:click="compraNueva()"> Guardar </button>
+                  </td>
+               </tr>
+             
+            </tbody>
+         </table>
+      </form>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+   <script type="text/javascript" src="<?php echo base_url() ?>js/vue.js"></script>
+   <script type="text/javascript" src="<?php echo base_url() ?>js/vue-resource.min.js"></script>
+   <script type="text/javascript" src="<?php echo base_url() ?>js/Listado.js"></script>
+</body>
+</html>
