@@ -10,7 +10,7 @@
    <div class="container">
 	  <h1> Listado de Compras </h1>
 	  
-      <form action="javascript:void(0);" id="controlador_compra">
+      <form action="javascript:void(0);" id="controlador_compras">
 		   
          <div v-if="cargando_compra">
             Cargando listado...
@@ -22,8 +22,8 @@
                   <th> Nombre </th>
                   <th> Descripción </th>
                   <th> Precio </th>
-				  <th> Imagen </th>
-				  <th>Categoria</th>
+				      <th> Imagen </th>
+				      <th>Categoria</th>
                </tr>
             </thead>
             <tbody>
@@ -41,7 +41,9 @@
 				 <td>
 					<!--<input type="file" name="imagen" @change="getImage" accept="image/*">-->
 					<img :src="avatar" class="img-circle" width="150" />
-				 </td>
+             </td>
+             
+             hola
 				 <td>
 					<input type="text" v-model="tar.categoria" />
 				 </td>

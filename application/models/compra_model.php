@@ -2,6 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class usuario_model extends CI_Model
+
 {
 	public $variable;
 
@@ -19,7 +20,7 @@ class usuario_model extends CI_Model
 	}
 	public function insertar($data)
 	{
-		$this->db->insert('compra', array(
+		$this->db->insert('productos', array(
 			'titulo' => $data['titulo'],
 			'descripcion' => $data['descripcion'],
 			'precio' => $data['precio'],
@@ -29,8 +30,8 @@ class usuario_model extends CI_Model
 	}
 	public function modificar($data)
 	{
-		$this->db->where('id_compra', $data['id_compra']);
-		$this->db->update('compra', array(
+		$this->db->where('id_producto', $data['id_producto']);
+		$this->db->update('productos', array(
 			'titulo' => $data['titulo'],
 			'descripcion' => $data['descripcion'],
 			'precio' => $data['precio'],
@@ -39,8 +40,8 @@ class usuario_model extends CI_Model
 	}
 	public function listar()
 	{
-		return $this->db->select('t.id_compra, t.nombre, t.descripcion, t.precio,t.imagen, c.id_categoria, c.nombre nombre_categoria')
-			->from('compra t')
+		return $this->db->select('t.id_producto, t.nombre, t.descripcion, t.precio,t.imagen, c.id_categoria, c.nombre nombre_categoria')
+			->from('productos t')
 			->join('categoria c', 'c.id_categoria = t.id_categoria')
 			->where('nombre_categoria', null)
 			->order_by('c.id_categoria')
@@ -49,8 +50,8 @@ class usuario_model extends CI_Model
 	}
 	public function eliminar($data)
 	{
-		$this->db->where('id_compra', $data['id_compra'])
-			->update('compra', array(
+		$this->db->where('id_producto', $data['id_producto'])
+			->update('productos', array(
 				'nombre_categoria' => $data('nombre_categoria')
 			));
 	}
